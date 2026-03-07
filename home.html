@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- daisyUI & tailwind  -->
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- connect with font awesome for icon  -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- title bar  -->
     <title>GitHub Issues Tracker</title>
@@ -21,7 +25,70 @@
     <!-- css stylesheet connected  -->
     <link rel="stylesheet" href="./css style/style.css">
 </head>
-<body>
-    hello world
+
+<body class="bg-gray-100">
+
+    <!-- it is the navbar section  -->
+    <nav class=" bg-sky-300 mb-16">
+        <div class="navbar bg-base-100 shadow-sm justify-between">
+            <div class="flex ">
+                <img class="w-12" src="./assets/github-logo.png" alt="">
+                <a class="text-xl align-middle ml-2 mt-2 font-semibold">GitHub Issues Tracker</a>
+            </div>
+            <div class="searchBar flex ">
+                <div>
+                    <label class="input">
+                        
+                        <span><i class="fa-brands fa-searchengin"></i></span>
+                        <input type="search" placeholder="Search issues.." required />
+                        
+                    </label>
+                </div>
+                <button class="ml-3 btn btn-primary join-item">Search</button>
+            </div>
+        </div>
+    </nav>
+    <!-- it is the main body sectino  -->
+    <main id="container" class="w-11/12 mx-auto">
+        <!-- it is the button div  -->
+        <div class="allBtn flex gap-4 p-6 bg-white rounded-md shadow-md mb-4">
+            <!-- button ALL  -->
+            <div id="btnAll" class="py-2 px-6 rounded-md shadow-sm btnColor">
+                <button class="text-white ">All</button>
+            </div>
+            <!-- Button Open  -->
+            <div id="btnOpen" class="py-2 px-6 rounded-md shadow-sm">
+                <button class="">Open</button>
+            </div>
+            <!-- Button CLOSED  -->
+            <div id="btnClosed" class="py-2 px-6 rounded-md shadow-sm">
+                <button class="">Closed</button>
+            </div>
+        </div>
+
+        <!-- it is total issues section  -->
+         <div class="p-6 bg-white rounded-md shadow-md flex gap-3 mb-6">
+            <!-- img icon div  -->
+            <div class="p-3 rounded-full bg-[#ECE4FF] ">
+                <img src="./assets/Aperture.png" alt="">
+            </div>
+            <!-- img text div  -->
+            <div class="">
+                <h2 id="totalIssues" class="text-xl font-semibold"></h2>
+                <p class="text-base text-[#64748B]">Track and manage your project issues</p>
+            </div>
+         </div>
+
+        <!-- display card section  -->
+         <section id="displayCard" class="bg-white shadow-md grid grid-cols-4 gap-5 p-6">
+            <!-- card that will be inserted dynamically  -->
+            
+         </section>
+        
+    </main>
+
+    <!-- connected with machine.js  -->
+     <script src="./js scripts/machine.js"></script>
 </body>
+
 </html>
