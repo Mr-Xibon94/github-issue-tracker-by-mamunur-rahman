@@ -25,7 +25,7 @@
 
 <body>
     <!-- full login body  -->
-    <main class="max-h-screen max-w-md mt-16 mb-16 mx-auto boreder-black shadow-sm">
+    <main class="bg-white max-h-screen max-w-md mt-16 mb-16 mx-auto boreder-black shadow-lg">
         <!-- it is complete login section  -->
         <section class="p-8">
 
@@ -46,13 +46,13 @@
                     <legend class="fieldset-legend">Username</legend>
                     <label class="input validator w-full">
 
-                        <input type="text" required placeholder="Username" pattern="[A-Za-z][A-Za-z0-9\-]*"
+                        <input id="usernameInput" type="text" required placeholder="Username" pattern="[A-Za-z][A-Za-z0-9\-]*"
                             minlength="3" maxlength="30" title="Only letters, numbers or dash" />
                     </label>
                     <br>
                     <legend class="fieldset-legend">Password</legend>
                     <label class="input validator w-full">
-                        <input class="" type="password" required placeholder="Password" minlength="5"
+                        <input id="passInput" type="password" required placeholder="Password" minlength="5"
                             pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                             title="Must be more than 8 characters, including number, lowercase letter, uppercase letter" />
                     </label>
@@ -80,6 +80,9 @@
         </section>
     </main>
 
+
+    <!-- js script connected  -->
+     <script src="./js scripts/login.js"></script>
 </body>
 
 </html>
