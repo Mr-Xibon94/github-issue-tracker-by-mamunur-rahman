@@ -20,7 +20,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
 
     <!-- css stylesheet connected  -->
-     <link rel="stylesheet" href="./css style/style.css">
+    <link rel="stylesheet" href="./css style/style.css">
 </head>
 
 <body>
@@ -40,9 +40,43 @@
                 <p class="text-base text-[#64748B] text-center">Sign in to manage your issues</p>
             </div>
             <!-- login input part  -->
-            <div class="login-input">
-                
+            <div class="login-input mt-6 w-full">
+
+                <fieldset class="">
+                    <legend class="fieldset-legend">Username</legend>
+                    <label class="input validator w-full">
+
+                        <input type="text" required placeholder="Username" pattern="[A-Za-z][A-Za-z0-9\-]*"
+                            minlength="3" maxlength="30" title="Only letters, numbers or dash" />
+                    </label>
+                    <br>
+                    <legend class="fieldset-legend">Password</legend>
+                    <label class="input validator w-full">
+                        <input class="" type="password" required placeholder="Password" minlength="5"
+                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                            title="Must be more than 8 characters, including number, lowercase letter, uppercase letter" />
+                    </label>
+
+                </fieldset>
+                <!-- sign button  -->
+                <button id="btnSignIn" class="bg-[#4A00FF] w-full text-white pt-2 py-2 text-lg font-bold border rounded-md mt-6">Sign In</button>
+
             </div>
+
+            <!-- break line  -->
+             <div class="grid grid-cols-11 mt-6">
+                <div class="col-span-5 mt-3 opacity-20"><hr></div>
+                <div><h2 class="text-center align-top col-span-1">OR</h2></div>
+                <div class="col-span-5 mt-3 opacity-20"><hr></div>
+             </div>
+             <!-- footer part -->
+             <div class="mt-6">
+                <p class="text-center text-[#64748B]">Demo Credentials</p>
+                <div class="bg-base-200 text-center pt-8 py-8 mt-2">
+                    <h2>Username: <span class="text-[#64748B]">admin </span></h2>  
+                    <h2>Passoward: <span class="text-[#64748B]">admin123 </span></h2> 
+                </div>
+             </div>
         </section>
     </main>
 
