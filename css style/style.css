@@ -5,3 +5,11 @@
 .btnColor {
     background-color: #4A00FF;
 }
+
+.textColor {
+    font: black;
+}
+
+.borderColor{
+    border-top: #A855F7;
+}
