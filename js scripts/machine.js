@@ -21,6 +21,8 @@ async function allIssues() {
     const data = await res.json();
     displayAllCards(data.data);
 
+    btnAll.click()
+
 }
 
 function displayAllCards(issues) {
@@ -46,7 +48,7 @@ function displayAllCards(issues) {
 
         issues.forEach((issue) => {
             const divCard = document.createElement("div")
-            divCard.className = "p-6 shadow-md rounded-xl border-t-2 border-t-green-600"
+            divCard.className = `p-6 shadow-md rounded-xl border-t-3 ${issue.status === "open"? "border-t-green-600" : "border-t-[#A855F7]"}  `;
 
             divCard.innerHTML = `
                         <!-- here the card logo section  -->
@@ -56,8 +58,8 @@ function displayAllCards(issues) {
                                 <img src="./assets/Open-Status.png" alt="">
                             </div>
                             <!-- card logo-2  -->
-                             <div class="logo-2 py-1 px-3 bg-red-200 rounded-xl">
-                                <p class="text-red-400 text-xs font-semibold">${issue.priority}</p>
+                             <div class="logo-2 py-1 px-3 ${issue.priority == "high"?"bg-red-200" : issue.priority == "medium"? " bg-yellow-200" : "bg-gray-200"} rounded-xl">
+                                <p class="${issue.priority == "high"? "text-red-400" : issue.priority =="medium"?  " text-yellow-500" : "text-gray-500"} text-xs font-semibold">${issue.priority=="high"?"HIGH":issue.priority=="medium"?"MEDIUM":"LOW"}</p>
                              </div>
                         </div>
         
@@ -126,8 +128,8 @@ function displayAllCards(issues) {
                                 <img src="./assets/Open-Status.png" alt="">
                             </div>
                             <!-- card logo-2  -->
-                             <div class="logo-2 py-1 px-3 bg-red-200 rounded-xl">
-                                <p class="text-red-400 text-xs font-semibold">${issue.priority}</p>
+                             <div class="logo-2 py-1 px-3 ${issue.priority == "high"? "bg-red-200" :  " bg-yellow-200"} rounded-xl">
+                                <p class="${issue.priority == "high"? "text-red-400" :  " text-yellow-500"} text-xs font-semibold">${issue.priority == "high"? "HIGH": "MEDIUM"}</p>
                              </div>
                         </div>
         
@@ -162,7 +164,7 @@ function displayAllCards(issues) {
                                 <p class="text-[12px] text-[#64748B]">${issue.createdAt}</p>
                             </div>
                 `;
-            displayCard.appendChild(divCard)
+                    displayCard.appendChild(divCard)
         }
         })
         
@@ -237,7 +239,8 @@ function displayAllCards(issues) {
                                 <p class="text-[12px] text-[#64748B]">${issue.createdAt}</p>
                             </div>
                 `;
-            displayCard.appendChild(divCard)
+                    displayCard.appendChild(divCard)
+                
         }
         })
         
