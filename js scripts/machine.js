@@ -55,7 +55,7 @@ function displayAllCards(issues) {
                         <div class="cardLogo flex justify-between mb-3">
                             <!-- Card Logo-1  -->
                             <div class="logo-1">
-                                <img src="./assets/Open-Status.png" alt="">
+                                <img src="./assets/${issue.status == "open"? "Open-Status.png":"Closed- Status .png"}" alt="">
                             </div>
                             <!-- card logo-2  -->
                              <div class="logo-2 py-1 px-3 ${issue.priority == "high"?"bg-red-200" : issue.priority == "medium"? " bg-yellow-200" : "bg-gray-200"} rounded-xl">
