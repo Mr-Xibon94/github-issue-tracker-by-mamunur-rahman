@@ -21,17 +21,62 @@ async function loadModalDetails(id) {
 
     const res = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`)
     const data = await res.json();
-
+    const dataOfId = data.data;
     // its modal part 
 
     const detailsModal = document.getElementById("detailsModal");
-
+    // detailsModal.innerHTML ="";
     detailsModal.innerHTML = `
-     ${data.data.id}
+      <h2 class="text-2xl font-bold">${dataOfId.title}</h2>
+                <div class="flex gap-2">
+                    <div>
+                        <p class="${dataOfId.status == "open" ? "bg-green-400" : "bg-[#4A00FF]"} text-white py-1 px-2 text-[12px] rounded-full">${dataOfId.status}</p>
+                    </div>
+                    <div>
+                        <p class="text-[14px] text-[#64748B]">. Opened by ${dataOfId.author} .</p>
+                    </div>
+                    <div class="">
+
+                        <p class="text-[14px] text-[#64748B]">${dataOfId.createdAt}</p>
+
+                    </div>
+                </div>
+
+
+                <div class="flex gap-2">
+                    <div class="logo-2 py-1 px-3 bg-red-200 rounded-xl inline-block">
+                        <p class="text-red-400 text-xs font-semibold"><i class="fa-solid fa-bug"></i> BUG</p>
+                    </div>
+                    <!-- help wanted logo/sign  -->
+                    <div class="logo-2 py-1 px-3 bg-yellow-100 rounded-xl inline-block">
+                        <p class="text-yellow-500 text-xs font-semibold">HELP WANTED</p>
+                    </div>
+
+                </div>
+
+                <div>
+                    <p class="text-[#64748B] text-2xl">The navigation menu doesn't collapse properly on mobile devices.
+                        Need to fix the responsive behavior.</p>
+                </div>
+
+                <div class="bg-gray-200 rounded-md">
+                    <div class="flex p-5">
+                        <div class="flex-1 space-y-1">
+                            <p class="text-[#64748B] font-semibold text-base">Assignee:</p>
+                            <h2 class="text-base font-semibold">${dataOfId.assignee?dataOfId.assignee : "N/A"}</h2>
+                        </div>
+
+                        <div class="flex-1 space-y-1">
+                            <p class="text-[#64748B] font-semibold text-base">Priority:</p>
+                            <p class="text-[12px] font-medium text-white  py-1 px-3 bg-red-400 rounded-full inline-block">HIGH</p>
+                        </div>
+                    </div>
+                </div>
     `;
 
     document.getElementById("wordModal").showModal();
 }
+
 // fetching all issues from Server 
 async function allIssues() {
     const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues ");
@@ -42,10 +87,7 @@ async function allIssues() {
 
 }
 
-function displayAllCards(issues) {
 
-
-}
 
 function displayAllCards(issues) {
 
@@ -70,7 +112,7 @@ function displayAllCards(issues) {
             const divCard = document.createElement("div")
             divCard.className = `p-6 shadow-md rounded-xl border-t-3 ${issue.status === "open" ? "border-t-green-600" : "border-t-[#A855F7]"}  `;
 
-            divCard.onclick =() => loadModalDetails(issue.id);
+            divCard.onclick = () => loadModalDetails(issue.id);
             divCard.innerHTML = `
                         <!-- here the card logo section  -->
                         <div>
@@ -144,7 +186,7 @@ function displayAllCards(issues) {
                 const divCard = document.createElement("div")
                 divCard.className = "p-6 shadow-md rounded-xl border-t-2 border-t-green-600"
 
-                divCard.onclick =() => loadModalDetails(issue.id);
+                divCard.onclick = () => loadModalDetails(issue.id);
 
                 // console.log(issue);
                 divCard.innerHTML = `
@@ -221,7 +263,7 @@ function displayAllCards(issues) {
                 const divCard = document.createElement("div")
                 divCard.className = "p-6 shadow-md rounded-xl border-t-3 border-[#A855F7] "
 
-                divCard.onclick =() => loadModalDetails(issue.id);
+                divCard.onclick = () => loadModalDetails(issue.id);
 
                 // console.log(issue);
                 divCard.innerHTML = `
