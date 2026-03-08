@@ -19,7 +19,7 @@ function issuesNumber(totalIssue) {
 // load spinner function 
 const manageSpinner = (status) => {
 
-    console.log(status, 1);
+    // console.log(status, 1);
     if (status == true) {
         document.getElementById('loadingSpinner').classList.remove('hidden');
         document.getElementById("displayCard").classList.add("hidden");
@@ -377,7 +377,7 @@ function displayAllCards(issues) {
 allIssues();
 
 document.getElementById("btnSearch").addEventListener("click", () => {
-    // removeFunc();
+    
     const input = document.getElementById("searchInput");
     const searchValue = input.value.toLowerCase();
     console.log(searchValue);
