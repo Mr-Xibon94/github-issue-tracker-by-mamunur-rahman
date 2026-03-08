@@ -16,6 +16,28 @@ function issuesNumber(totalIssue) {
 
 }
 
+// load spinner function 
+const manageSpinner = (status) => {
+
+    console.log(status, 1);
+    if (status == true) {
+        document.getElementById('loadingSpinner').classList.remove('hidden');
+        document.getElementById("displayCard").classList.add("hidden");
+    } else {
+        setTimeout(() => {
+            document.getElementById('loadingSpinner').classList.add('hidden');
+
+        }, 500);
+
+        setTimeout(() => {
+            document.getElementById("displayCard").classList.remove("hidden");
+
+        }, 500);
+
+
+    }
+}
+
 // fetching issue from id for modal 
 async function loadModalDetails(id) {
 
@@ -79,6 +101,9 @@ async function loadModalDetails(id) {
 
 // fetching all issues from Server 
 async function allIssues() {
+
+    manageSpinner(true);
+
     const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues ");
     const data = await res.json();
     displayAllCards(data.data);
@@ -92,10 +117,13 @@ async function allIssues() {
 function displayAllCards(issues) {
 
 
+    // manageSpinner(false);
 
 
     // its btnAll 
     btnAll.addEventListener('click', () => {
+        manageSpinner(true);
+
         btnOpen.classList.remove("btnColor")
         btnClosed.classList.remove("btnColor")
 
@@ -160,12 +188,14 @@ function displayAllCards(issues) {
 
                             </div>
                 `;
+            manageSpinner(false);
             displayCard.appendChild(divCard)
 
         })
     })
     // Its btnOpen 
     btnOpen.addEventListener('click', () => {
+        manageSpinner(true);
 
         displayCard.innerHTML = " ";
 
@@ -233,7 +263,9 @@ function displayAllCards(issues) {
                                 <p class="text-[12px] text-[#64748B]">${issue.createdAt}</p>
                             </div>
                 `;
+                manageSpinner(false);
                 displayCard.appendChild(divCard)
+
             }
         })
 
@@ -244,6 +276,7 @@ function displayAllCards(issues) {
     // its btnClosed 
     btnClosed.addEventListener('click', () => {
 
+        manageSpinner(true);
         displayCard.innerHTML = " ";
 
         let countIssue = 0;
@@ -310,6 +343,7 @@ function displayAllCards(issues) {
                                 <p class="text-[12px] text-[#64748B]">${issue.createdAt}</p>
                             </div>
                 `;
+                manageSpinner(false);
                 displayCard.appendChild(divCard)
 
             }
