@@ -9,7 +9,9 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
     <!-- connect with font awesome for icon  -->
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- title bar  -->
     <title>GitHub Issues Tracker</title>
@@ -38,17 +40,17 @@
             <div class="searchBar flex ">
                 <div>
                     <label class="input">
-                        
+
                         <span><i class="fa-brands fa-searchengin"></i></span>
                         <input type="search" placeholder="Search issues.." required />
-                        
+
                     </label>
                 </div>
                 <button class="ml-3 btn btn-primary join-item">Search</button>
             </div>
         </div>
     </nav>
-    <!-- it is the main body sectino  -->
+    <!-- it is the main body section  -->
     <main id="container" class="w-11/12 mx-auto">
         <!-- it is the button div  -->
         <div class="allBtn flex gap-4 p-6 bg-white rounded-md shadow-md mb-4">
@@ -67,28 +69,48 @@
         </div>
 
         <!-- it is total issues section  -->
-         <div class="p-6 bg-white rounded-md shadow-md flex gap-3 mb-6">
+        <div class="p-6 bg-white rounded-md shadow-md flex gap-3 mb-6">
             <!-- img icon div  -->
-            <div class="p-3 rounded-full bg-[#ECE4FF] ">
-                <img src="./assets/Aperture.png" alt="">
+            <div class="">
+                <img class="w-14 h-14" src="./assets/circle.png" alt="">
             </div>
             <!-- img text div  -->
             <div class="">
                 <h2 id="totalIssues" class="text-xl font-semibold"></h2>
                 <p class="text-base text-[#64748B]">Track and manage your project issues</p>
             </div>
-         </div>
+        </div>
 
         <!-- display card section  -->
-         <section id="displayCard" class="bg-white shadow-md grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 p-6">
+        <section id="displayCard" class="bg-white shadow-md grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 p-6">
             <!-- card that will be inserted dynamically  -->
-            
-         </section>
-        
+
+        </section>
+
+
+
     </main>
 
+
+    <!-- here is the modal functionality  -->
+    <dialog id="wordModal" class="modal">
+        <div class="modal-box">
+            <div id="detailsModal">
+
+            </div>
+            <div class="modal-action">
+                <form method="dialog">
+                    <!-- if there is a button in form, it will close the modal -->
+                    <button class="btn">Close</button>
+                </form>
+            </div>
+        </div>
+    </dialog>
+
+
+
     <!-- connected with machine.js  -->
-     <script src="./js scripts/machine.js"></script>
+    <script src="./js scripts/machine.js"></script>
 </body>
 
 </html>

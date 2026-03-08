@@ -15,6 +15,23 @@ function issuesNumber(totalIssue) {
     totalIssues.innerText = totalIssue;
 
 }
+
+// fetching issue from id for modal 
+async function loadModalDetails(id) {
+
+    const res = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`)
+    const data = await res.json();
+
+    // its modal part 
+
+    const detailsModal = document.getElementById("detailsModal");
+
+    detailsModal.innerHTML = `
+     ${data.data.id}
+    `;
+
+    document.getElementById("wordModal").showModal();
+}
 // fetching all issues from Server 
 async function allIssues() {
     const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues ");
@@ -32,11 +49,14 @@ function displayAllCards(issues) {
 
 function displayAllCards(issues) {
 
+
+
+
     // its btnAll 
     btnAll.addEventListener('click', () => {
         btnOpen.classList.remove("btnColor")
         btnClosed.classList.remove("btnColor")
-        
+
         btnAll.classList.add("btnColor")
         btnOpen.classList.add("textColor")
         btnClosed.classList.add("textColor")
@@ -48,18 +68,20 @@ function displayAllCards(issues) {
 
         issues.forEach((issue) => {
             const divCard = document.createElement("div")
-            divCard.className = `p-6 shadow-md rounded-xl border-t-3 ${issue.status === "open"? "border-t-green-600" : "border-t-[#A855F7]"}  `;
+            divCard.className = `p-6 shadow-md rounded-xl border-t-3 ${issue.status === "open" ? "border-t-green-600" : "border-t-[#A855F7]"}  `;
 
+            divCard.onclick =() => loadModalDetails(issue.id);
             divCard.innerHTML = `
                         <!-- here the card logo section  -->
+                        <div>
                         <div class="cardLogo flex justify-between mb-3">
                             <!-- Card Logo-1  -->
                             <div class="logo-1">
-                                <img src="./assets/${issue.status == "open"? "Open-Status.png":"Closed- Status .png"}" alt="">
+                                <img src="./assets/${issue.status == "open" ? "Open-Status.png" : "Closed- Status .png"}" alt="">
                             </div>
                             <!-- card logo-2  -->
-                             <div class="logo-2 py-1 px-3 ${issue.priority == "high"?"bg-red-200" : issue.priority == "medium"? " bg-yellow-200" : "bg-gray-200"} rounded-xl">
-                                <p class="${issue.priority == "high"? "text-red-400" : issue.priority =="medium"?  " text-yellow-500" : "text-gray-500"} text-xs font-semibold">${issue.priority=="high"?"HIGH":issue.priority=="medium"?"MEDIUM":"LOW"}</p>
+                             <div class="logo-2 py-1 px-3 ${issue.priority == "high" ? "bg-red-200" : issue.priority == "medium" ? " bg-yellow-200" : "bg-gray-200"} rounded-xl">
+                                <p class="${issue.priority == "high" ? "text-red-400" : issue.priority == "medium" ? " text-yellow-500" : "text-gray-500"} text-xs font-semibold">${issue.priority == "high" ? "HIGH" : issue.priority == "medium" ? "MEDIUM" : "LOW"}</p>
                              </div>
                         </div>
         
@@ -93,34 +115,39 @@ function displayAllCards(issues) {
                                 <p class="text-[12px] text-[#64748B]"><span>#${issue.id}</span> by ${issue.author}</p>
                                 <p class="text-[12px] text-[#64748B]">${issue.createdAt}</p>
                             </div>
+
+                            </div>
                 `;
             displayCard.appendChild(divCard)
+
         })
     })
     // Its btnOpen 
     btnOpen.addEventListener('click', () => {
-        
+
         displayCard.innerHTML = " ";
-        
+
         let countIssue = 0;
-        
+
         btnAll.classList.remove("btnColor")
         btnClosed.classList.remove("btnColor")
-        
+
         btnOpen.classList.add("btnColor")
         btnAll.classList.add("textColor")
         btnClosed.classList.add("textColor")
-        
-        issues.forEach((issue)=>{
+
+        issues.forEach((issue) => {
             if (issue.status == "open") {
 
-            countIssue ++;
+                countIssue++;
 
-            const divCard = document.createElement("div")
-            divCard.className = "p-6 shadow-md rounded-xl border-t-2 border-t-green-600"
+                const divCard = document.createElement("div")
+                divCard.className = "p-6 shadow-md rounded-xl border-t-2 border-t-green-600"
 
-            // console.log(issue);
-            divCard.innerHTML = `
+                divCard.onclick =() => loadModalDetails(issue.id);
+
+                // console.log(issue);
+                divCard.innerHTML = `
                         <!-- here the card logo section  -->
                         <div class="cardLogo flex justify-between mb-3">
                             <!-- Card Logo-1  -->
@@ -128,8 +155,8 @@ function displayAllCards(issues) {
                                 <img src="./assets/Open-Status.png" alt="">
                             </div>
                             <!-- card logo-2  -->
-                             <div class="logo-2 py-1 px-3 ${issue.priority == "high"? "bg-red-200" :  " bg-yellow-200"} rounded-xl">
-                                <p class="${issue.priority == "high"? "text-red-400" :  " text-yellow-500"} text-xs font-semibold">${issue.priority == "high"? "HIGH": "MEDIUM"}</p>
+                             <div class="logo-2 py-1 px-3 ${issue.priority == "high" ? "bg-red-200" : " bg-yellow-200"} rounded-xl">
+                                <p class="${issue.priority == "high" ? "text-red-400" : " text-yellow-500"} text-xs font-semibold">${issue.priority == "high" ? "HIGH" : "MEDIUM"}</p>
                              </div>
                         </div>
         
@@ -164,38 +191,40 @@ function displayAllCards(issues) {
                                 <p class="text-[12px] text-[#64748B]">${issue.createdAt}</p>
                             </div>
                 `;
-                    displayCard.appendChild(divCard)
-        }
+                displayCard.appendChild(divCard)
+            }
         })
-        
+
 
         issuesNumber(countIssue);
     })
 
     // its btnClosed 
     btnClosed.addEventListener('click', () => {
-        
+
         displayCard.innerHTML = " ";
-        
+
         let countIssue = 0;
-        
+
         btnAll.classList.remove("btnColor")
         btnOpen.classList.remove("btnColor")
-        
+
         btnClosed.classList.add("btnColor")
         btnAll.classList.add("textColor")
         btnOpen.classList.add("textColor")
-        
-        issues.forEach((issue)=>{
+
+        issues.forEach((issue) => {
             if (issue.status == "closed") {
 
-            countIssue ++;
+                countIssue++;
 
-            const divCard = document.createElement("div")
-            divCard.className = "p-6 shadow-md rounded-xl border-t-3 border-[#A855F7] "
+                const divCard = document.createElement("div")
+                divCard.className = "p-6 shadow-md rounded-xl border-t-3 border-[#A855F7] "
 
-            // console.log(issue);
-            divCard.innerHTML = `
+                divCard.onclick =() => loadModalDetails(issue.id);
+
+                // console.log(issue);
+                divCard.innerHTML = `
                         <!-- here the card logo section  -->
                         <div class="cardLogo flex justify-between mb-3">
                             <!-- Card Logo-1  -->
@@ -203,8 +232,8 @@ function displayAllCards(issues) {
                                 <img src="./assets/Closed- Status .png" alt="">
                             </div>
                             <!-- card logo-2  -->
-                             <div class="logo-2 py-1 px-3 ${issue.priority == "medium"? "bg-yellow-200" : "bg-gray-200"} rounded-xl">
-                                <p class="${issue.priority == "medium"? " text-yellow-500" :  "text-gray-500"} text-xs font-semibold">${issue.priority == "medium"? "MEDIUM":"LOW"}</p>
+                             <div class="logo-2 py-1 px-3 ${issue.priority == "medium" ? "bg-yellow-200" : "bg-gray-200"} rounded-xl">
+                                <p class="${issue.priority == "medium" ? " text-yellow-500" : "text-gray-500"} text-xs font-semibold">${issue.priority == "medium" ? "MEDIUM" : "LOW"}</p>
                              </div>
                         </div>
         
@@ -239,11 +268,11 @@ function displayAllCards(issues) {
                                 <p class="text-[12px] text-[#64748B]">${issue.createdAt}</p>
                             </div>
                 `;
-                    displayCard.appendChild(divCard)
-                
-        }
+                displayCard.appendChild(divCard)
+
+            }
         })
-        
+
 
         issuesNumber(countIssue);
     })
