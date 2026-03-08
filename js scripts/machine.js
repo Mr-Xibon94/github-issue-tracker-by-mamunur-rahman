@@ -63,7 +63,7 @@ async function loadModalDetails(id) {
                     <div class="flex p-5">
                         <div class="flex-1 space-y-1">
                             <p class="text-[#64748B] font-semibold text-base">Assignee:</p>
-                            <h2 class="text-base font-semibold">${dataOfId.assignee?dataOfId.assignee : "N/A"}</h2>
+                            <h2 class="text-base font-semibold">${dataOfId.assignee ? dataOfId.assignee : "N/A"}</h2>
                         </div>
 
                         <div class="flex-1 space-y-1">
@@ -341,3 +341,89 @@ function displayAllCards(issues) {
 
 // calling allIssues function
 allIssues();
+
+document.getElementById("btnSearch").addEventListener("click", () => {
+    // removeFunc();
+    const input = document.getElementById("searchInput");
+    const searchValue = input.value.toLowerCase();
+    console.log(searchValue);
+
+    fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
+        .then((res) => res.json())
+        .then((data) => {
+            const allWords = data.data;
+            console.log(allWords)
+            const filterWords = allWords.filter((word) => word.title.toLowerCase().includes(searchValue));
+            console.log(filterWords)
+            displayWordDetails(filterWords);
+
+
+        })
+})
+
+function displayWordDetails(searchWords) {
+    btnAll.click();
+    const totalIs = searchWords.length;
+    issuesNumber(totalIs)
+
+    // btnAll.click();
+    displayCard.innerHTML = "";
+
+    searchWords.forEach((issue) => {
+        console.log(issue)
+        const divCard = document.createElement("div")
+        divCard.className = `p-6 shadow-md rounded-xl border-t-3 ${issue.status === "open" ? "border-t-green-600" : "border-t-[#A855F7]"}  `;
+
+        divCard.onclick = () => loadModalDetails(issue.id);
+        divCard.innerHTML = `
+                        <!-- here the card logo section  -->
+                        <div>
+                        <div class="cardLogo flex justify-between mb-3">
+                            <!-- Card Logo-1  -->
+                            <div class="logo-1">
+                                <img src="./assets/${issue.status == "open" ? "Open-Status.png" : "Closed- Status .png"}" alt="">
+                            </div>
+                            <!-- card logo-2  -->
+                             <div class="logo-2 py-1 px-3 ${issue.priority == "high" ? "bg-red-200" : issue.priority == "medium" ? " bg-yellow-200" : "bg-gray-200"} rounded-xl">
+                                <p class="${issue.priority == "high" ? "text-red-400" : issue.priority == "medium" ? " text-yellow-500" : "text-gray-500"} text-xs font-semibold">${issue.priority == "high" ? "HIGH" : issue.priority == "medium" ? "MEDIUM" : "LOW"}</p>
+                             </div>
+                        </div>
+        
+                        <!-- here is card header  -->
+                         <div class="space-y-3">
+                            <h2 class="text-sm font-medium">
+                               ${issue.title}
+                            </h2>
+        
+                            <p class="line-clamp-2 text-xs text-[#64748B]">${issue.description}</p>
+                         </div>
+        
+                         <!-- BUG & HELP WANTED Section  -->
+                          <div class="flex flex-col gap-2 lg:flex-row lg:justify-between mt-6 mb-6">
+                            <!-- bug logo/sign  -->
+                             <div class="logo-2 py-1 px-3 bg-red-200 rounded-xl">
+                                <p class="text-red-400 text-xs font-semibold"><i class="fa-solid fa-bug"></i> BUG</p>
+                             </div>
+        
+                             <!-- help wanted logo/sign  -->
+                              <div class="logo-2 py-1 px-3 bg-yellow-100 rounded-xl">
+                                <p class="text-yellow-500 text-xs font-semibold">HELP WANTED</p>
+                             </div>
+                          </div>
+        
+                          <!-- LINE BREAK  -->
+                           <hr class="opacity-15 shadow-sm mb-6">
+        
+                           <!-- POSTED BY NAME & DATE  -->
+                            <div class="space-y-2">
+                                <p class="text-[12px] text-[#64748B]"><span>#${issue.id}</span> by ${issue.author}</p>
+                                <p class="text-[12px] text-[#64748B]">${issue.createdAt}</p>
+                            </div>
+
+                            </div>
+                `;
+        displayCard.appendChild(divCard)
+
+    })
+
+}
