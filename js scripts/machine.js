@@ -90,7 +90,7 @@ async function loadModalDetails(id) {
 
                         <div class="flex-1 space-y-1">
                             <p class="text-[#64748B] font-semibold text-base">Priority:</p>
-                            <p class="text-[12px] font-medium text-white  py-1 px-3 bg-red-400 rounded-full inline-block">HIGH</p>
+                            <p class="${dataOfId.priority == "high" ? "text-red-400 bg-red-200" : dataOfId.priority == "medium" ? " text-yellow-500 bg-yellow-200" : "text-gray-500 bg-white"} text-[12px] font-medium   py-1 px-3 rounded-full inline-block">${dataOfId.priority == "high" ? "HIGH" : dataOfId.priority == "medium" ? "MEDIUM" : "LOW"}</p>
                         </div>
                     </div>
                 </div>
@@ -124,10 +124,11 @@ function displayAllCards(issues) {
     btnAll.addEventListener('click', () => {
         manageSpinner(true);
 
-        btnOpen.classList.remove("btnColor")
-        btnClosed.classList.remove("btnColor")
+        btnOpen.classList.remove("btnColor", "textWhite")
+        btnClosed.classList.remove("btnColor", "textWhite")
+        btnAll.classList.remove("textColor")
 
-        btnAll.classList.add("btnColor")
+        btnAll.classList.add("btnColor", "textWhite")
         btnOpen.classList.add("textColor")
         btnClosed.classList.add("textColor")
 
@@ -201,10 +202,11 @@ function displayAllCards(issues) {
 
         let countIssue = 0;
 
-        btnAll.classList.remove("btnColor")
-        btnClosed.classList.remove("btnColor")
+        btnAll.classList.remove("btnColor", "textWhite")
+        btnClosed.classList.remove("btnColor", "textWhite")
+        btnOpen.classList.remove("textColor")
 
-        btnOpen.classList.add("btnColor")
+        btnOpen.classList.add("btnColor", "textWhite")
         btnAll.classList.add("textColor")
         btnClosed.classList.add("textColor")
 
@@ -281,10 +283,11 @@ function displayAllCards(issues) {
 
         let countIssue = 0;
 
-        btnAll.classList.remove("btnColor")
-        btnOpen.classList.remove("btnColor")
+        btnAll.classList.remove("btnColor", "textWhite")
+        btnOpen.classList.remove("btnColor", "textWhite")
+        btnClosed.classList.remove("textColor")
 
-        btnClosed.classList.add("btnColor")
+        btnClosed.classList.add("btnColor", "textWhite")
         btnAll.classList.add("textColor")
         btnOpen.classList.add("textColor")
 

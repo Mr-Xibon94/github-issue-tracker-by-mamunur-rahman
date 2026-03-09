@@ -7,9 +7,12 @@
 }
 
 .textColor {
-    font: black;
+    color: black;
 }
 
+.textWhite {
+    color: white;
+}
 .borderColor{
     border-top: #A855F7;
 }
