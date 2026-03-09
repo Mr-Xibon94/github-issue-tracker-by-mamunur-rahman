@@ -13,3 +13,9 @@
 .borderColor{
     border-top: #A855F7;
 }
+
+.text-align {
+    
+    align-content: center;
+    align-items: center;
+}
