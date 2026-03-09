@@ -12,7 +12,7 @@ const displayCard = document.getElementById("displayCard");
 const totalIssues = document.getElementById("totalIssues");
 
 function issuesNumber(totalIssue) {
-    totalIssues.innerText = totalIssue;
+    totalIssues.innerHTML = `${totalIssue} <span>issues</span>`;
 
 }
 
