@@ -65,16 +65,30 @@ async function loadModalDetails(id) {
                 </div>
 
 
-                <div class="flex gap-2">
-                    <div class="logo-2 py-1 px-3 bg-red-200 rounded-xl inline-block">
-                        <p class="text-red-400 text-xs font-semibold"><i class="fa-solid fa-bug"></i> BUG</p>
-                    </div>
-                    <!-- help wanted logo/sign  -->
-                    <div class="logo-2 py-1 px-3 bg-yellow-100 rounded-xl inline-block">
-                        <p class="text-yellow-500 text-xs font-semibold">HELP WANTED</p>
-                    </div>
+                 <!-- BUG & HELP-WANTED & Enhancement & Good first issue & documentation Section  -->
+                          <div class="flex flex-col  gap-2 md:flex-row md:flex-wrap mt-6 mb-6">
+                            <!-- bug logo/sign  -->
+                             <div class="">
+                                <p class=" ${rcvArr(dataOfId.labels).includes("bug")? "bg-red-100 text-red-400 logo-2 py-1 px-3  rounded-xl md:flex  gap-1 inline-block" : "" } text-xs font-semibold">${rcvArr(dataOfId.labels).includes("bug")? `<i class="fa-solid fa-bug"></i> BUG`: ""}</p>
+                             </div>
+        
+                             <!-- help wanted logo/sign  -->
+                              <div class="">
+                                <p class="${rcvArr(dataOfId.labels).includes("help wanted")? "bg-yellow-100 text-yellow-500 logo-2 py-1 px-3 rounded-xl gap-2 inline-block md:flex " : ""} text-xs font-semibold">${ rcvArr(dataOfId.labels).includes("help wanted")?`<i class="fa-regular fa-life-ring"></i> HELP WANTED`: ""}</p>
+                             </div>
+                                <!-- enhancement logo/sign  -->
+                             <div class="">
+                                <p class="${rcvArr(dataOfId.labels).includes("enhancement")? "bg-green-100 text-green-500 logo-2 py-1 px-3 rounded-xl inline-block  md:flex gap-1" : ""} text-xs font-semibold">${ rcvArr(dataOfId.labels).includes("enhancement")?`<i class="fa-solid fa-cloud-bolt"></i> ENHANCEMENT`: ""}</p>
+                             </div>
+                                <!-- GOOD FIRST ISSUE logo/sign  -->
+                             <div class="">
+                                <p class="${rcvArr(dataOfId.labels).includes("good first issue")? "bg-blue-100 text-blue-500 logo-2 py-1 px-3 rounded-xl inline-block md:flex gap-1" : ""} text-xs font-semibold">${ rcvArr(dataOfId.labels).includes("good first issue")?`<i class="fa-brands fa-jira"></i>GOOD FIRST ISSUE`: ""}</p>
+                             </div>
 
-                </div>
+                             <div class="">
+                                <p class="${rcvArr(dataOfId.labels).includes("documentation")? "bg-cyan-100 text-cyan-500 logo-2 py-1 px-3 rounded-xl inline-block md:flex gap-1" : ""} text-xs font-semibold">${ rcvArr(dataOfId.labels).includes("documentation")?`<i class="fa-brands fa-readme"></i> DOCUMENTATION`: ""}</p>
+                             </div>
+                          </div>
 
                 <div>
                     <p class="text-[#64748B] text-2xl">The navigation menu doesn't collapse properly on mobile devices.
@@ -110,6 +124,12 @@ async function allIssues() {
 
     btnAll.click()
 
+}
+
+// rcv an array and return data single by singls 
+const rcvArr = (labelsArr) => {
+    const lavelElements = labelsArr.map((label) => `${label}`);
+    return lavelElements.join(" ");
 }
 
 
@@ -165,16 +185,28 @@ function displayAllCards(issues) {
                             <p class="line-clamp-2 text-xs text-[#64748B]">${issue.description}</p>
                          </div>
         
-                         <!-- BUG & HELP WANTED Section  -->
-                          <div class="flex flex-col gap-2 lg:flex-row lg:justify-between mt-6 mb-6">
+                         <!-- BUG & HELP-WANTED & Enhancement & Good first issue & documentation Section  -->
+                          <div class="flex flex-col  gap-2 md:flex-row md:flex-wrap mt-6 mb-6">
                             <!-- bug logo/sign  -->
-                             <div class="logo-2 py-1 px-3 bg-red-200 rounded-xl">
-                                <p class="text-red-400 text-xs font-semibold"><i class="fa-solid fa-bug"></i> BUG</p>
+                             <div class="">
+                                <p class=" ${rcvArr(issue.labels).includes("bug")? "bg-red-100 text-red-400 logo-2 py-1 px-3  rounded-xl md:flex  gap-1 inline-block" : "" } text-xs font-semibold">${rcvArr(issue.labels).includes("bug")? `<i class="fa-solid fa-bug"></i> BUG`: ""}</p>
                              </div>
         
                              <!-- help wanted logo/sign  -->
-                              <div class="logo-2 py-1 px-3 bg-yellow-100 rounded-xl">
-                                <p class="text-yellow-500 text-xs font-semibold">HELP WANTED</p>
+                              <div class="">
+                                <p class="${rcvArr(issue.labels).includes("help wanted")? "bg-yellow-100 text-yellow-500 logo-2 py-1 px-3 rounded-xl gap-2 inline-block md:flex " : ""} text-xs font-semibold">${ rcvArr(issue.labels).includes("help wanted")?`<i class="fa-regular fa-life-ring"></i> HELP WANTED`: ""}</p>
+                             </div>
+                                <!-- enhancement logo/sign  -->
+                             <div class="">
+                                <p class="${rcvArr(issue.labels).includes("enhancement")? "bg-green-100 text-green-500 logo-2 py-1 px-3 rounded-xl inline-block  md:flex gap-1" : ""} text-xs font-semibold">${ rcvArr(issue.labels).includes("enhancement")?`<i class="fa-solid fa-cloud-bolt"></i> ENHANCEMENT`: ""}</p>
+                             </div>
+                                <!-- GOOD FIRST ISSUE logo/sign  -->
+                             <div class="">
+                                <p class="${rcvArr(issue.labels).includes("good first issue")? "bg-blue-100 text-blue-500 logo-2 py-1 px-3 rounded-xl inline-block gap-1 md:flex" : ""} text-xs font-semibold">${ rcvArr(issue.labels).includes("good first issue")?`<i class="fa-brands fa-jira"></i>GOOD FIRST ISSUE`: ""}</p>
+                             </div>
+
+                             <div class="">
+                                <p class="${rcvArr(issue.labels).includes("documentation")? "bg-cyan-100 text-cyan-500 logo-2 py-1 px-3 rounded-xl inline-block md:flex gap-1" : ""} text-xs font-semibold">${ rcvArr(issue.labels).includes("documentation")?`<i class="fa-brands fa-readme"></i> DOCUMENTATION`: ""}</p>
                              </div>
                           </div>
         
@@ -243,16 +275,29 @@ function displayAllCards(issues) {
                             <p class="line-clamp-2 text-xs text-[#64748B]">${issue.description}</p>
                          </div>
         
-                         <!-- BUG & HELP WANTED Section  -->
-                          <div class="flex flex-col gap-2 lg:flex-row lg:justify-between mt-6 mb-6">
+                         <!-- BUG & HELP-WANTED & Enhancement & Good first issue & documentation Section  -->
+
+                          <div class="flex flex-col  gap-2 md:flex-row md:flex-wrap mt-6 mb-6">
                             <!-- bug logo/sign  -->
-                             <div class="logo-2 py-1 px-3 bg-red-200 rounded-xl">
-                                <p class="text-red-400 text-xs font-semibold"><i class="fa-solid fa-bug"></i> BUG</p>
+                             <div class="">
+                                <p class=" ${rcvArr(issue.labels).includes("bug")? "bg-red-100 text-red-400 logo-2 py-1 px-3  rounded-xl md:flex gap-1 inline-block" : "" } text-xs font-semibold">${rcvArr(issue.labels).includes("bug")? `<i class="fa-solid fa-bug"></i> BUG`: ""}</p>
                              </div>
         
                              <!-- help wanted logo/sign  -->
-                              <div class="logo-2 py-1 px-3 bg-yellow-100 rounded-xl">
-                                <p class="text-yellow-500 text-xs font-semibold">HELP WANTED</p>
+                              <div class="">
+                                <p class="${rcvArr(issue.labels).includes("help wanted")? "bg-yellow-100 text-yellow-500 logo-2 py-1 px-3 rounded-xl gap-2 inline-block md:flex " : ""} text-xs font-semibold">${ rcvArr(issue.labels).includes("help wanted")?`<i class="fa-regular fa-life-ring"></i> HELP WANTED`: ""}</p>
+                             </div>
+                                <!-- enhancement logo/sign  -->
+                             <div class="">
+                                <p class="${rcvArr(issue.labels).includes("enhancement")? "bg-green-100 text-green-500 logo-2 py-1 px-3 rounded-xl inline-block  md:flex gap-1" : ""} text-xs font-semibold">${ rcvArr(issue.labels).includes("enhancement")?`<i class="fa-solid fa-cloud-bolt"></i> ENHANCEMENT`: ""}</p>
+                             </div>
+                                <!-- GOOD FIRST ISSUE logo/sign  -->
+                             <div class="">
+                                <p class="${rcvArr(issue.labels).includes("good first issue")? "bg-blue-100 text-blue-500 logo-2 py-1 px-3 rounded-xl inline-block md:flex gap-1" : ""} text-xs font-semibold">${ rcvArr(issue.labels).includes("good first issue")?`<i class="fa-brands fa-jira"></i>GOOD FIRST ISSUE`: ""}</p>
+                             </div>
+
+                             <div class="">
+                                <p class="${rcvArr(issue.labels).includes("documentation")? "bg-cyan-100 text-cyan-500 logo-2 py-1 px-3 rounded-xl inline-block md:flex gap-1" : ""} text-xs font-semibold">${ rcvArr(issue.labels).includes("documentation")?`<i class="fa-brands fa-readme"></i> DOCUMENTATION`: ""}</p>
                              </div>
                           </div>
         
@@ -324,18 +369,31 @@ function displayAllCards(issues) {
                             <p class="line-clamp-2 text-xs text-[#64748B]">${issue.description}</p>
                          </div>
         
-                         <!-- BUG & HELP WANTED Section  -->
-                          <div class="flex flex-col gap-2 lg:flex-row lg:justify-between mt-6 mb-6">
+                          <!-- BUG & HELP-WANTED & Enhancement & Good first issue & documentation Section  -->
+                          <div class="flex flex-col  gap-2 md:flex-row md:flex-wrap mt-6 mb-6">
                             <!-- bug logo/sign  -->
-                             <div class="logo-2 py-1 px-3 bg-red-200 rounded-xl">
-                                <p class="text-red-400 text-xs font-semibold"><i class="fa-solid fa-bug"></i> BUG</p>
+                             <div class="">
+                                <p class=" ${rcvArr(issue.labels).includes("bug")? "bg-red-100 text-red-400 logo-2 py-1 px-3  rounded-xl md:flex gap-1 inline-block" : "" } text-xs font-semibold">${rcvArr(issue.labels).includes("bug")? `<i class="fa-solid fa-bug"></i> BUG`: ""}</p>
                              </div>
         
                              <!-- help wanted logo/sign  -->
-                              <div class="logo-2 py-1 px-3 bg-yellow-100 rounded-xl">
-                                <p class="text-yellow-500 text-xs font-semibold">HELP WANTED</p>
+                              <div class="">
+                                <p class="${rcvArr(issue.labels).includes("help wanted")? "bg-yellow-100 text-yellow-500 logo-2 py-1 px-3 rounded-xl gap-2 inline-block md:flex " : ""} text-xs font-semibold">${ rcvArr(issue.labels).includes("help wanted")?`<i class="fa-regular fa-life-ring"></i> HELP WANTED`: ""}</p>
+                             </div>
+                                <!-- enhancement logo/sign  -->
+                             <div class="">
+                                <p class="${rcvArr(issue.labels).includes("enhancement")? "bg-green-100 text-green-500 logo-2 py-1 px-3 rounded-xl inline-block  md:flex gap-1" : ""} text-xs font-semibold">${ rcvArr(issue.labels).includes("enhancement")?`<i class="fa-solid fa-cloud-bolt"></i> ENHANCEMENT`: ""}</p>
+                             </div>
+                                <!-- GOOD FIRST ISSUE logo/sign  -->
+                             <div class="">
+                                <p class="${rcvArr(issue.labels).includes("good first issue")? "bg-blue-100 text-blue-500 logo-2 py-1 px-3 rounded-xl inline-block md:flex gap-1" : ""} text-xs font-semibold">${ rcvArr(issue.labels).includes("good first issue")?`<i class="fa-brands fa-jira"></i>GOOD FIRST ISSUE`: ""}</p>
+                             </div>
+
+                             <div class="">
+                                <p class="${rcvArr(issue.labels).includes("documentation")? "bg-cyan-100 text-cyan-500 logo-2 py-1 px-3 rounded-xl inline-block md:flex gap-1" : ""} text-xs font-semibold">${ rcvArr(issue.labels).includes("documentation")?`<i class="fa-brands fa-readme"></i> DOCUMENTATION`: ""}</p>
                              </div>
                           </div>
+        
         
                           <!-- LINE BREAK  -->
                            <hr class="opacity-15 shadow-sm mb-6">
